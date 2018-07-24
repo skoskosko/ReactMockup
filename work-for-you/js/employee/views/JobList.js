@@ -31,26 +31,26 @@ class JobList extends Component {
 
    render() {
       return (
-        <ListView
-        style={styles.container}
-        dataSource={this.state.names}
-        renderRow={(data) => <JobRow {...data} />}
-      />
-         // <View>
-         //    {
-         //       this.state.names.map((item, index) => (
-         //          <TouchableOpacity
-         //             key = {item.id}
-         //             style = {styles.container}
-         //             onPress = {() => this.alertItemName(item)}>
-         //
-         //             <Text style = {styles.text}>
-         //                {item.name}
-         //             </Text>
-         //          </TouchableOpacity>
-         //       ))
-         //    }
-         // </View>
+      //   <ListView
+      //   style={styles.container}
+      //   dataSource={this.state.names}
+      //   renderRow={(data) => <JobRow {...data} />}
+      // />
+         <View>
+            {
+               this.state.names.map((item, index) => (
+                  <TouchableOpacity
+                     key = {item.id}
+                     style = {styles.container}
+                     onPress = {() => this.alertItemName(item)}>
+
+                     <Text style = {styles.text}>
+                        {item.name}
+                     </Text>
+                  </TouchableOpacity>
+               ))
+            }
+         </View>
       )
    }
 }
