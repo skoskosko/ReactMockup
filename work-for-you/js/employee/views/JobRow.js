@@ -13,18 +13,18 @@ const styles = StyleSheet.create({
     fontSize: 16,
   },
   photo: {
-    height: 40,
-    width: 40,
-    borderRadius: 20,
+    height: 50,
+    width: 50,
+    borderRadius: 0,
   },
 });
   //{`${props.id} ${props.name}`}
     // <Image source={{ uri: props.picture.large}} style={styles.photo} />
-const JobRow = (props) => (
+const JobRow = ({props}) => (
   <View style={styles.container}>
-
+  <Image source={{ uri: props.uri}} style={styles.photo} />
     <Text style={styles.text}>
-      "TEST TET"
+      {props.name}
     </Text>
 
 

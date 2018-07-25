@@ -10,15 +10,17 @@ class JobList extends Component {
             id: 0,
             name: 'Ben Carson',
             employer: 'Awesome Company',
-            start-date: new Date('2018-31-08T10:20:30Z'),
-            end-date:new Date('2018-05-09T10:20:30Z'),
+            startDate: new Date('2018-31-08T10:20:30Z') ,
+            endDate:new Date('2018-05-09T10:20:30Z'),
+            uri: 'http://api.muxuni.fi/gaelin/logo1.png'
 
          },
       ]
    }
 
    alertItemName = (item) => {
-      alert(item.name)
+      //alert(item.name)
+      alert("This opens Companys ad");
    }
 
    render() {
@@ -37,7 +39,8 @@ class JobList extends Component {
                      style = {styles.container}
                      onPress = {() => this.alertItemName(item)}>
 
-                     <JobRow>"TEST"</JobRow>
+                     <JobRow props={item} ></JobRow>
+
                      <Text style = {styles.text}>
                         {item.name}
                      </Text>
