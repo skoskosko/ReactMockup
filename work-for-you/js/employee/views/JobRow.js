@@ -18,13 +18,16 @@ const styles = StyleSheet.create({
     borderRadius: 20,
   },
 });
-
+  //{`${props.id} ${props.name}`}
+    // <Image source={{ uri: props.picture.large}} style={styles.photo} />
 const JobRow = (props) => (
   <View style={styles.container}>
-    // <Image source={{ uri: props.picture.large}} style={styles.photo} />
+
     <Text style={styles.text}>
-      {`${props.id} ${props.name}`}
+      "TEST TET"
     </Text>
+
+
   </View>
 );
 

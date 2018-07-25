@@ -73,7 +73,13 @@ const UserHistoryScreen = ({ navigation, banner }) => (
     <SampleText>{banner}</SampleText>
 
   <SampleText>Job Suggestions and notifications come here</SampleText>
+
+  <ScrollView>
   <JobList/>
+  </ScrollView>
+
+
+
     <StatusBar barStyle="default" />
 
   </SafeAreaView>

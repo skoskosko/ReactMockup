@@ -8,20 +8,12 @@ class JobList extends Component {
       names: [
          {
             id: 0,
-            name: 'Ben',
+            name: 'Ben Carson',
+            employer: 'Awesome Company',
+            start-date: new Date('2018-31-08T10:20:30Z'),
+            end-date:new Date('2018-05-09T10:20:30Z'),
+
          },
-         {
-            id: 1,
-            name: 'Susan',
-         },
-         {
-            id: 2,
-            name: 'Robert',
-         },
-         {
-            id: 3,
-            name: 'Mary',
-         }
       ]
    }
 
@@ -40,13 +32,17 @@ class JobList extends Component {
             {
                this.state.names.map((item, index) => (
                   <TouchableOpacity
+
                      key = {item.id}
                      style = {styles.container}
                      onPress = {() => this.alertItemName(item)}>
 
+                     <JobRow>"TEST"</JobRow>
                      <Text style = {styles.text}>
                         {item.name}
                      </Text>
+
+
                   </TouchableOpacity>
                ))
             }
