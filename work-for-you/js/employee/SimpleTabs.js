@@ -13,6 +13,7 @@ import { SafeAreaView, createBottomTabNavigator } from 'react-navigation';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import SampleText from './SampleText';
 import JobList from './views/JobList';
+import MatchList from './views/MatchList';
 
 import { Button } from '../commonComponents/ButtonWithMargin';
 
@@ -49,10 +50,9 @@ const MyNavScreen = ({ navigation, banner }) => (
 
 const JobMatchScreen = ({ navigation, banner }) => (
   <SafeAreaView forceInset={{ horizontal: 'always', top: 'always' }}>
-    <SampleText>{banner}</SampleText>
-
-    <SampleText>This screen will list job matches</SampleText>
-
+    <ScrollView>
+    <MatchList/>
+    </ScrollView>
     <StatusBar barStyle="default" />
   </SafeAreaView>
 );
@@ -67,13 +67,13 @@ const ChatScreen = ({ navigation, banner }) => (
   </SafeAreaView>
 );
 
+
+// <SampleText>{banner}</SampleText>
+// <SampleText>Job Suggestions and notifications come here</SampleText>
+
 const UserHistoryScreen = ({ navigation, banner }) => (
 
-  <SafeAreaView forceInset={{ horizontal: 'always', top: 'always' }}>
-    <SampleText>{banner}</SampleText>
-
-  <SampleText>Job Suggestions and notifications come here</SampleText>
-
+<SafeAreaView forceInset={{ horizontal: 'always', top: 'always' }}>
   <ScrollView>
   <JobList/>
   </ScrollView>

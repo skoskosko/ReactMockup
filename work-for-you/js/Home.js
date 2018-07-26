@@ -16,10 +16,12 @@ import {
   StatusBar,
   View,
 } from 'react-native';
+
 import { SafeAreaView, createStackNavigator } from 'react-navigation';
 
 import SimpleTabs from './employee/SimpleTabs';
 import EmployerScreen from './employer/EmployerScreen';
+
 import App from './App';
 
 const ExampleInfo = {
