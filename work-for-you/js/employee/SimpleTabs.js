@@ -188,7 +188,7 @@ class MyChatScreen extends React.Component<MyChatScreenProps> {
 }
 
 const MySettingsScreen = ({ navigation }) => (
-  <MyNavScreen banner="Settings Tab" navigation={navigation} />
+  <MyNavScreen banner="Settings Tab You can edit search and sugggestion properties, your profile settings and general app settings here." navigation={navigation} />
 );
 
 MySettingsScreen.navigationOptions = {

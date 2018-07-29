@@ -21,7 +21,7 @@ import { Asset, Constants, ScreenOrientation } from 'expo';
 ScreenOrientation.allow(ScreenOrientation.Orientation.ALL);
 
 
-import App from '../App';
+import Home from '../Home';
 
 const ExampleInfo = {
   SimpleTabs: {
@@ -32,8 +32,8 @@ const ExampleInfo = {
     name: 'Employer',
     description: 'Employer view can be seen here whhen it is though out',
   },
-  App: {
-    name: 'App',
+  Home: {
+    name: 'Home',
     description: 'Demo of all different views ant tabthings i can do with these packages',
   },
 };
@@ -41,7 +41,7 @@ const ExampleInfo = {
 const ExampleRoutes = {
   SimpleTabs: SimpleTabs,
   EmployerScreen: EmployerScreen,
-  App: App
+  Home: Home
 };
 
 
@@ -82,33 +82,55 @@ class Login extends React.Component {
 
       <View style={{ flex: 1 }}>
 
-      <Image
-      resizeMode={'cover'}
-      style={{ width: '100%', height: 200 }}
-        source={require('../assets/logo.png')}
-      />
+        <View style={styles.center}>
+          <Image
+          resizeMode={'cover'}
+          style={{ width: '100%', height: 200 }}
+            source={require('../assets/logo.png')}
+          />
+
+            <Button
+              title="Login"
+
+              onPress={() => {
+                let routeName = 'SimpleTabs';
+                let route = ExampleRoutes[routeName];
+                if (route.screen || route.path || route.params) {
+                  const { path, params, screen } = route;
+                  const { router } = screen;
+                  const action =
+                    path && router.getActionForPathAndParams(path, params);
+                  navigation.navigate(routeName, {}, action);
+                } else {
+                  navigation.navigate(routeName);
+                }
+              }}
+            />
+
+        </View>
 
 
 
-        <Button
-          title="Login"
+          <StatusBar barStyle="default" />
+            <Button
+              title="Templates"
 
-          onPress={() => {
-            let routeName = 'SimpleTabs';
-            let route = ExampleRoutes[routeName];
-            if (route.screen || route.path || route.params) {
-              const { path, params, screen } = route;
-              const { router } = screen;
-              const action =
-                path && router.getActionForPathAndParams(path, params);
-              navigation.navigate(routeName, {}, action);
-            } else {
-              navigation.navigate(routeName);
-            }
-          }}
-        />
-        <StatusBar barStyle="default" />
+              onPress={() => {
+                let routeName = 'Home';
+                let route = ExampleRoutes[routeName];
+                if (route.screen || route.path || route.params) {
+                  const { path, params, screen } = route;
+                  const { router } = screen;
+                  const action =
+                    path && router.getActionForPathAndParams(path, params);
+                  navigation.navigate(routeName, {}, action);
+                } else {
+                  navigation.navigate(routeName);
+                }
+              }}
+            />
       </View>
+
     );
   }
 }
@@ -134,11 +156,14 @@ const AppNavigator = createStackNavigator(
 
 
 
-export default createStackNavigator({
-  AppNavigator
-});
+export default AppNavigator;
 
 const styles = StyleSheet.create({
+  center: {
+   flex: 1,
+   justifyContent: 'center',
+   alignItems: 'center'
+  },
   item: {
     paddingHorizontal: 16,
     paddingVertical: 12,
