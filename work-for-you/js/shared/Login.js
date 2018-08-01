@@ -8,6 +8,7 @@ import {
   TouchableOpacity,
   Text,
   StatusBar,
+  Icon,
   TextInput,
   InteractionManager,
   View,
@@ -72,6 +73,14 @@ class Login extends React.Component {
   //   }}
   // />
   // onPress={() => navigation.goBack(null)}
+
+// #1d3bc6b blue
+// #27b2c6 blueish
+// #b7e0e0 whiteish
+// #35bc09 green
+// #47645f graygreenish
+
+   // <Icon name={"chevron-right"}  size={30} color="#01a699" />
   render() {
     const { navigation } = this.props;
     return (
@@ -81,54 +90,81 @@ class Login extends React.Component {
 
 
       <View style={{ flex: 1 }}>
+        <Image
+        resizeMode={'cover'}
+        style={{top:'5%', width: '100%', height: 200 }}
+          source={require('../assets/logo.png')}
+        />
 
         <View style={styles.center}>
-          <Image
-          resizeMode={'cover'}
-          style={{ width: '100%', height: 200 }}
-            source={require('../assets/logo.png')}
-          />
 
-            <Button
-              title="Login"
 
-              onPress={() => {
-                let routeName = 'SimpleTabs';
-                let route = ExampleRoutes[routeName];
-                if (route.screen || route.path || route.params) {
-                  const { path, params, screen } = route;
-                  const { router } = screen;
-                  const action =
-                    path && router.getActionForPathAndParams(path, params);
-                  navigation.navigate(routeName, {}, action);
-                } else {
-                  navigation.navigate(routeName);
-                }
-              }}
-            />
+          <TouchableOpacity
+            onPress={() => {
+              let routeName = 'SimpleTabs';
+              let route = ExampleRoutes[routeName];
+              if (route.screen || route.path || route.params) {
+                const { path, params, screen } = route;
+                const { router } = screen;
+                const action =
+                  path && router.getActionForPathAndParams(path, params);
+                navigation.navigate(routeName, {}, action);
+              } else {
+                navigation.navigate(routeName);
+              }
+            }}
+            style={{
+              borderWidth:1,
+              borderColor:'rgba(0,0,0,0.2)',
+              alignItems:'center',
+              justifyContent:'center',
+              width:100,
+              height:100,
+              backgroundColor:'#fff',
+              borderRadius:100,
+            }}>
+              <Text>Employee</Text>
 
-        </View>
+        </TouchableOpacity>
 
+          <Text>
+
+          </Text>
+
+
+        <TouchableOpacity
+          onPress={() => {
+            let routeName = 'EmployerScreen';
+            let route = ExampleRoutes[routeName];
+            if (route.screen || route.path || route.params) {
+              const { path, params, screen } = route;
+              const { router } = screen;
+              const action =
+                path && router.getActionForPathAndParams(path, params);
+              navigation.navigate(routeName, {}, action);
+            } else {
+              navigation.navigate(routeName);
+            }
+          }}
+          style={{
+            borderWidth:1,
+            borderColor:'rgba(0,0,0,0.2)',
+            alignItems:'center',
+            justifyContent:'center',
+            width:100,
+            height:100,
+            backgroundColor:'#fff',
+            borderRadius:100,
+          }}>
+            <Text>Employer</Text>
+
+      </TouchableOpacity>
+
+
+      </View>
 
 
           <StatusBar barStyle="default" />
-            <Button
-              title="Templates"
-
-              onPress={() => {
-                let routeName = 'Home';
-                let route = ExampleRoutes[routeName];
-                if (route.screen || route.path || route.params) {
-                  const { path, params, screen } = route;
-                  const { router } = screen;
-                  const action =
-                    path && router.getActionForPathAndParams(path, params);
-                  navigation.navigate(routeName, {}, action);
-                } else {
-                  navigation.navigate(routeName);
-                }
-              }}
-            />
       </View>
 
     );

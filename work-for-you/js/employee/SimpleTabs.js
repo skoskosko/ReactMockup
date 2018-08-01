@@ -6,7 +6,7 @@ import type {
   NavigationScreenProp,
   NavigationEventSubscription,
 } from 'react-navigation';
-
+import { MapView } from 'expo';
 import React from 'react';
 import { Platform, ScrollView, StatusBar, View } from 'react-native';
 import { SafeAreaView, createBottomTabNavigator } from 'react-navigation';
@@ -56,18 +56,64 @@ const JobMatchScreen = ({ navigation, banner }) => (
     <StatusBar barStyle="default" />
   </SafeAreaView>
 );
+  // </SafeAreaView>
 
-const ChatScreen = ({ navigation, banner }) => (
-  <SafeAreaView forceInset={{ horizontal: 'always', top: 'always' }}>
-    <SampleText>{banner}</SampleText>
 
-    <SampleText>This screen has aviable chats and things like that</SampleText>
+    // <SafeAreaView forceInset={{ horizontal: 'always', top: 'always' }}>
+const MapScreen = ({ navigation, banner }) => (
 
-    <StatusBar barStyle="default" />
-  </SafeAreaView>
+
+      <MapView
+         style={{ flex: 1 }}
+         initialRegion={{
+           latitude: 38.701148,
+           longitude: -9.420363,
+           latitudeDelta: 0.02022,
+           longitudeDelta: 0.00921,
+         }}>
+
+         <MapView.Marker
+           key={1}
+           coordinate={{latitude: 38.701148, longitude: -9.420363}}
+           title={"Some Title"}
+           description={"Hello world"}
+           image={require('../assets/Marker1.png')}
+         />
+         <MapView.Marker
+           key={2}
+           coordinate={{latitude: 38.698048, longitude: -9.430363}}
+           title={"Some Title"}
+           description={"Hello world"}
+           image={require('../assets/Marker2.png')}
+         />
+         <MapView.Marker
+           key={3}
+           coordinate={{latitude: 38.705148, longitude: -9.420363}}
+           title={"Some Title"}
+           description={"Hello world"}
+           image={require('../assets/Marker3.png')}
+         />
+         <MapView.Marker
+           key={4}
+           coordinate={{latitude: 38.703148, longitude: -9.420363}}
+           title={"Some Title"}
+           description={"Hello world"}
+           image={require('../assets/Marker4.png')}
+         />
+         <MapView.Marker
+           key={5}
+           coordinate={{latitude: 38.701148, longitude: -9.410363}}
+           title={"Some Title"}
+           description={"Hello world"}
+           image={require('../assets/Marker5.png')}
+         />
+   </MapView>
+
+
 );
 
 
+    // <StatusBar barStyle="default" />
 // <SampleText>{banner}</SampleText>
 // <SampleText>Job Suggestions and notifications come here</SampleText>
 
@@ -147,20 +193,20 @@ class MyPeopleScreen extends React.Component<MyPeopleScreenProps> {
   }
 }
 
-type MyChatScreenProps = {
+type MyMapScreenProps = {
   navigation: NavigationScreenProp<*>,
 };
-class MyChatScreen extends React.Component<MyChatScreenProps> {
+class MyMapScreen extends React.Component<MyMapScreenProps> {
   _s0: NavigationEventSubscription;
   _s1: NavigationEventSubscription;
   _s2: NavigationEventSubscription;
   _s3: NavigationEventSubscription;
 
   static navigationOptions = {
-    tabBarLabel: 'Chat',
+    tabBarLabel: 'Map',
     tabBarIcon: ({ tintColor, focused }) => (
       <Ionicons
-        name={focused ? 'ios-chatboxes' : 'ios-chatboxes-outline'}
+        name={focused ? 'ios-map' : 'ios-map-outline'}
         size={26}
         style={{ color: tintColor }}
       />
@@ -183,7 +229,7 @@ class MyChatScreen extends React.Component<MyChatScreenProps> {
   };
   render() {
     const { navigation } = this.props;
-    return <ChatScreen banner="Chat Tab" navigation={navigation} />;
+    return <MapScreen banner="Jobs Near You" navigation={navigation} />;
   }
 }
 
@@ -204,6 +250,10 @@ MySettingsScreen.navigationOptions = {
 
 const SimpleTabs = createBottomTabNavigator(
   {
+    Kartta: {
+      screen: MyMapScreen,
+      path: 'map',
+    },
     Home: {
       screen: MyHomeScreen,
       path: '',
@@ -211,14 +261,6 @@ const SimpleTabs = createBottomTabNavigator(
     People: {
       screen: MyPeopleScreen,
       path: 'cart',
-    },
-    Chat: {
-      screen: MyChatScreen,
-      path: 'chat',
-    },
-    Settings: {
-      screen: MySettingsScreen,
-      path: 'settings',
     },
   },
   {

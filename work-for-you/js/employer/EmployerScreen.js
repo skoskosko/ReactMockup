@@ -62,12 +62,12 @@ const UserHistoryScreen = ({ navigation, banner }) => (
   </SafeAreaView>
 );
 
-const MyHomeScreen = ({ navigation }) => (
+const PeopleScreen = ({ navigation }) => (
   <UserHistoryScreen banner="Here will be listed lots of the stuff " navigation={navigation} />
 
 );
 
-MyHomeScreen.navigationOptions = {
+PeopleScreen.navigationOptions = {
   tabBarTestIDProps: {
     testID: 'TEST_ID_HOME',
     accessibilityLabel: 'TEST_ID_HOME_ACLBL',
@@ -82,12 +82,12 @@ MyHomeScreen.navigationOptions = {
   ),
 };
 
-type MyPeopleScreenProps = {
+type ListingScreenProps = {
   navigation: NavigationScreenProp<*>,
 };
 
 
-class MyPeopleScreen extends React.Component<MyPeopleScreenProps> {
+class ListingScreen extends React.Component<ListingScreenProps> {
   _s0: NavigationEventSubscription;
   _s1: NavigationEventSubscription;
   _s2: NavigationEventSubscription;
@@ -124,10 +124,10 @@ class MyPeopleScreen extends React.Component<MyPeopleScreenProps> {
   }
 }
 
-type MyChatScreenProps = {
+type MatchesScreenProps = {
   navigation: NavigationScreenProp<*>,
 };
-class MyChatScreen extends React.Component<MyChatScreenProps> {
+class MatchesScreen extends React.Component<MatchesScreenProps> {
   _s0: NavigationEventSubscription;
   _s1: NavigationEventSubscription;
   _s2: NavigationEventSubscription;
@@ -182,20 +182,16 @@ MySettingsScreen.navigationOptions = {
 const SimpleTabs = createBottomTabNavigator(
   {
     Home: {
-      screen: MyHomeScreen,
-      path: '',
+      screen: PeopleScreen,
+      path: 'People',
     },
     People: {
-      screen: MyPeopleScreen,
-      path: 'cart',
+      screen: ListingScreen,
+      path: 'Listing',
     },
     Chat: {
-      screen: MyChatScreen,
-      path: 'chat',
-    },
-    Settings: {
-      screen: MySettingsScreen,
-      path: 'settings',
+      screen: MatchesScreen,
+      path: 'Matches',
     },
   },
   {

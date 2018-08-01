@@ -1,5 +1,20 @@
 {
   "expo": {
-    "sdkVersion": "27.0.0"
+    "name": "Shift Cover",
+    "description": "your app desc",
+    "sdkVersion": "27.0.0",
+    "icon":"./js/assets/logoSqr.png",
+    "splash":{
+      "image":"./js/assets/logo.png"
+    },
+    "android":{
+      "package": "fi.muxuni.workforyou",
+      "config":{
+        "googleMaps": {
+          "apiKey":"AIzaSyBnvEsXCgRA4QU0ASPb8ceEJr5V4VZkEeQ"
+      }
+
+      }
+    }
   }
 }
