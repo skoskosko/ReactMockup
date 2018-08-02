@@ -8,43 +8,34 @@ import type {
 } from 'react-navigation';
 
 import React from 'react';
-import { Platform, ScrollView, StatusBar, View } from 'react-native';
+import { Platform, ScrollView, StatusBar, View, Text } from 'react-native';
 import { SafeAreaView, createBottomTabNavigator } from 'react-navigation';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import SampleText from './SampleText';
+import PeopleList from './views/PeopleList';
+import ListingList from './views/ListingList';
+import MatchesList from './views/MatchesList';
 import { Button } from '../commonComponents/ButtonWithMargin';
 
-const MyNavScreen = ({ navigation, banner }) => (
+
+
+const JobListingsScreen = ({ navigation, banner }) => (
   <SafeAreaView forceInset={{ horizontal: 'always', top: 'always' }}>
     <SampleText>{banner}</SampleText>
-    <Button
-      onPress={() => navigation.navigate('Home')}
-      title="Go to home tab"
-    />
-    <Button
-      onPress={() => navigation.navigate('Settings')}
-      title="Go to settings tab"
-    />
-    <Button onPress={() => navigation.goBack(null)} title="Go back" />
+    <ScrollView>
+   <ListingList></ListingList>
+  </ScrollView>
     <StatusBar barStyle="default" />
   </SafeAreaView>
 );
 
-const JobMatchScreen = ({ navigation, banner }) => (
+const MatchScreen = ({ navigation, banner }) => (
   <SafeAreaView forceInset={{ horizontal: 'always', top: 'always' }}>
     <SampleText>{banner}</SampleText>
 
-    <SampleText>This screen will list job matches</SampleText>
-
-    <StatusBar barStyle="default" />
-  </SafeAreaView>
-);
-
-const ChatScreen = ({ navigation, banner }) => (
-  <SafeAreaView forceInset={{ horizontal: 'always', top: 'always' }}>
-    <SampleText>{banner}</SampleText>
-
-    <SampleText>This screen has aviable chats and things like that</SampleText>
+      <ScrollView>
+      <MatchesList/>
+      </ScrollView>
 
     <StatusBar barStyle="default" />
   </SafeAreaView>
@@ -63,7 +54,23 @@ const UserHistoryScreen = ({ navigation, banner }) => (
 );
 
 const PeopleScreen = ({ navigation }) => (
-  <UserHistoryScreen banner="Here will be listed lots of the stuff " navigation={navigation} />
+  <SafeAreaView forceInset={{ horizontal: 'always', top: 'always' }}>
+    <Text>
+
+    </Text>
+    <Text>
+      Candidates for your listings
+    </Text>
+    <ScrollView>
+    <PeopleList/>
+    </ScrollView>
+    <StatusBar barStyle="default" />
+  </SafeAreaView>
+
+
+
+
+
 
 );
 
@@ -72,10 +79,10 @@ PeopleScreen.navigationOptions = {
     testID: 'TEST_ID_HOME',
     accessibilityLabel: 'TEST_ID_HOME_ACLBL',
   },
-  tabBarLabel: 'Home',
+  tabBarLabel: 'People',
   tabBarIcon: ({ tintColor, focused }) => (
     <Ionicons
-      name={focused ? 'ios-home' : 'ios-home-outline'}
+      name={focused ? 'ios-people' : 'ios-people-outline'}
       size={26}
       style={{ color: tintColor }}
     />
@@ -94,10 +101,10 @@ class ListingScreen extends React.Component<ListingScreenProps> {
   _s3: NavigationEventSubscription;
 
   static navigationOptions = {
-    tabBarLabel: 'People',
+    tabBarLabel: 'Listings',
     tabBarIcon: ({ tintColor, focused }) => (
       <Ionicons
-        name={focused ? 'ios-people' : 'ios-people-outline'}
+        name={focused ? 'ios-search' : 'ios-search-outline'}
         size={26}
         style={{ color: tintColor }}
       />
@@ -120,7 +127,7 @@ class ListingScreen extends React.Component<ListingScreenProps> {
   };
   render() {
     const { navigation } = this.props;
-    return <JobMatchScreen banner="List of dem matches and stuff" navigation={navigation} />;
+    return <JobListingsScreen banner="Your Listings" navigation={navigation} />;
   }
 }
 
@@ -134,10 +141,10 @@ class MatchesScreen extends React.Component<MatchesScreenProps> {
   _s3: NavigationEventSubscription;
 
   static navigationOptions = {
-    tabBarLabel: 'Chat',
+    tabBarLabel: 'Matches',
     tabBarIcon: ({ tintColor, focused }) => (
       <Ionicons
-        name={focused ? 'ios-chatboxes' : 'ios-chatboxes-outline'}
+        name={focused ? 'ios-star' : 'ios-star-outline'}
         size={26}
         style={{ color: tintColor }}
       />
@@ -160,36 +167,23 @@ class MatchesScreen extends React.Component<MatchesScreenProps> {
   };
   render() {
     const { navigation } = this.props;
-    return <ChatScreen banner="Chat Tab" navigation={navigation} />;
+    return <MatchScreen banner="Matches for your listings" navigation={navigation} />;
   }
 }
 
-const MySettingsScreen = ({ navigation }) => (
-  <MyNavScreen banner="Settings Tab" navigation={navigation} />
-);
 
-MySettingsScreen.navigationOptions = {
-  tabBarLabel: 'Settings',
-  tabBarIcon: ({ tintColor, focused }) => (
-    <Ionicons
-      name={focused ? 'ios-settings' : 'ios-settings-outline'}
-      size={26}
-      style={{ color: tintColor }}
-    />
-  ),
-};
 
 const SimpleTabs = createBottomTabNavigator(
   {
-    Home: {
+    People: {
       screen: PeopleScreen,
       path: 'People',
     },
-    People: {
+    Listing: {
       screen: ListingScreen,
       path: 'Listing',
     },
-    Chat: {
+    Matches: {
       screen: MatchesScreen,
       path: 'Matches',
     },
